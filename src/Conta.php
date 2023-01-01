@@ -2,10 +2,29 @@
 
 class Conta
 {
-    //bastração da minha conta , atributos
-    private string $cpfTitular;
-    private string $nomeTitular;
-    private float $saldo = 100;
+    private $cpfTitular;
+    private $nomeTitular;
+    private $saldo;
+    private static $numeroDeContas = 0;
+    
+    public function __construct(string $cpfTitular, string $nomeTitular)
+    {
+        $this->cpfTitular = $cpfTitular;
+        $this->nomeTitular =  $nomeTitular;
+        $this->validaNomeTitular($nomeTitular);
+        $this->saldo = 0;
+        
+        self::$numeroDeContas++;
+    }
+
+    public function validaNomeTitular(string $nomeTitular)
+    {
+        if (strlen($nomeTitular)<5){
+            echo "o nome precisa ter mais de 5 caracteres";
+            exit();
+        }
+    }
+
     
     public function saca(float $valorASacar):void
     {
@@ -34,6 +53,10 @@ class Conta
         $contaDestino->deposita($valorATransferir);
     }
     
+    public static function getNumeroDeContas() :int
+    {
+        return self::$numeroDeContas;
+    }
     
     public function getsaldo() : float
     {
