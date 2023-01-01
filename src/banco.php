@@ -1,44 +1,21 @@
 <?php
 
-require_once 'funcoes.php';
+require_once 'Conta.php';
 
-$contasCorrentes = [
-    '123.456.789-10' => [
-        'titular' => 'Maria',
-        'saldo' => 10000
-    ],
-    '123.456.689-11' => [
-        'titular' => 'Alberto',
-        'saldo' => 300
-    ],
-    '123.256.789-12' => [
-        'titular' => 'Vinicius',
-        'saldo' => 100
-    ]
-];
+$primeiraConta = new Conta();
 
-$contasCorrentes['123.456.789-10'] = sacar(
-    $contasCorrentes['123.456.789-10'],
-    500
-);
+var_dump($primeiraConta);
+$primeiraConta->deposita(500);
 
-$contasCorrentes['123.456.689-11'] = sacar(
-    $contasCorrentes['123.456.689-11'],
-    200
-);
+var_dump($primeiraConta);
 
-$contasCorrentes['123.256.789-12'] = depositar(
-    $contasCorrentes['123.256.789-12'],
-    900
-);
+$segundaConta = new Conta();
+$segundaConta->setCpf('123.456.789-0');
 
-unset($contasCorrentes['123.456.689-11']);
+$segundaConta->setNomeTitular('Vinicius');
 
-titularComLetrasMaiusculas($contasCorrentes['123.256.789-12']);
+$segundaConta->saca(300); // isso é ok
 
-foreach ($contasCorrentes as $cpf => $conta) {
-    ['titular' => $titular, 'saldo' => $saldo] = $conta;
-    exibeMensagem(
-        "$cpf $titular $saldo"
-    );
-}
+var_dump($segundaConta);
+$segundaConta->getSaldo();
+
