@@ -16,7 +16,13 @@ class Conta
         
         self::$numeroDeContas++;
     }
-
+    // ao constrir é atribuido a static $numero de contas que mais uma conta foi criada
+    // porem, se for instanciado um objeto sem uma referencia, precisa ser apagado da static $numero de contas
+    public function __destruct()
+    {
+        self::$numeroDeContas--;
+    }
+    
     public function validaNomeTitular(string $nomeTitular)
     {
         if (strlen($nomeTitular)<5){
@@ -24,8 +30,7 @@ class Conta
             exit();
         }
     }
-
-    
+       
     public function saca(float $valorASacar):void
     {
         if ($valorASacar > $this->saldo){
@@ -52,6 +57,8 @@ class Conta
         }
         $contaDestino->deposita($valorATransferir);
     }
+    
+    
     
     public static function getNumeroDeContas() :int
     {

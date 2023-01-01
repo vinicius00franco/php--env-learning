@@ -15,6 +15,6 @@ $conta = new Conta('698.549.548-20', 'Cristiana');
 var_dump($primeiraConta,$segundaConta,$conta);
 
 
-$conta = new Conta('698.549.548-20', 'Rosana');
+new Conta('698.549.548-20', 'Rosana');
 
-echo Conta::getNumeroDeContas();
+echo Conta::getNumeroDeContas().PHP_EOL;
