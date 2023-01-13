@@ -1,20 +1,24 @@
 <?php
 
+namespace Alura\Banco\Modelo\Conta;
+
+use Alura\Banco\Modelo\Conta\Titular;
+use Alura\Banco\Modelo\Endereco;
+use Alura\Banco\Modelo\Cpf;
+
 class Conta
 {
-    private $cpfTitular;
-    private $nomeTitular;
-    private $saldo;
     private static $numeroDeContas = 0;
     
-    public function __construct(string $cpfTitular, string $nomeTitular)
+    public function __construct
+    (
+        private Titular $Titular,
+        private $saldo = 0,
+        private Endereco $endereco,
+    )
     {
-        $this->cpfTitular = $cpfTitular;
-        $this->nomeTitular =  $nomeTitular;
-        $this->validaNomeTitular($nomeTitular);
-        $this->saldo = 0;
-        
         self::$numeroDeContas++;
+        $Titular = new Titular(new Cpf($Titular->getCpf()),$Titular->getNome(),$endereco);
     }
     // ao constrir é atribuido a static $numero de contas que mais uma conta foi criada
     // porem, se for instanciado um objeto sem uma referencia, precisa ser apagado da static $numero de contas
@@ -65,26 +69,9 @@ class Conta
         return self::$numeroDeContas;
     }
     
-    public function getsaldo() : float
+    public function getSaldo() : float
     {
         return $this->saldo;
     }
-    
-    public function getNomeTitular() : string
-    {
-        return $this->nomeTitular;
-    }
-    public function setNomeTitular(string $nomeTitular) : void
-    {
-        $this->nomeTitular = $nomeTitular;
-    }
-    public function getCpf() : string
-    {
-        return $this->cpfTitular;
-    }
-    public function setCpf(string $cpfTitular) : void
-    {
-        $this->cpfTitular = $cpfTitular;
-    }
-    
+        
 }
