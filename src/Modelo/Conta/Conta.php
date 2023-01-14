@@ -4,7 +4,6 @@ namespace Alura\Banco\Modelo\Conta;
 
 use Alura\Banco\Modelo\Conta\Titular;
 use Alura\Banco\Modelo\Endereco;
-use Alura\Banco\Modelo\Cpf;
 
 class Conta
 {
@@ -12,13 +11,13 @@ class Conta
     
     public function __construct
     (
-        private Titular $Titular,
+        private $Titular,
         private $saldo = 0,
         private Endereco $endereco,
     )
     {
         self::$numeroDeContas++;
-        $Titular = new Titular(new Cpf($Titular->getCpf()),$Titular->getNome(),$endereco);
+        $Titular = new Titular($Titular->getCpf(),$Titular->getNome(),$endereco);
     }
     // ao constrir é atribuido a static $numero de contas que mais uma conta foi criada
     // porem, se for instanciado um objeto sem uma referencia, precisa ser apagado da static $numero de contas

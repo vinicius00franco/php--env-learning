@@ -2,9 +2,7 @@
 
 namespace Alura\Banco\Modelo\Conta; 
 
-use Alura\Banco\Modelo\Cpf;
-use Alura\Banco\Modelo\Pessoa;
-use Alura\Banco\Modelo\Endereco;
+use Alura\Banco\Modelo\{Pessoa,Cpf,Endereco};
 
 class Titular extends Pessoa
 {
@@ -28,6 +26,6 @@ class Titular extends Pessoa
 
     public function getCpf()
     {
-        return $this->cpf->getCpfTitular();
+        return $this->cpf;
     }
 }

@@ -2,6 +2,8 @@
 
 namespace Alura\Banco\Modelo;
 
+use Alura\Banco\Modelo\{Pessoa,Cpf};
+
 class Funcionario extends Pessoa
 {
     public function __construct
