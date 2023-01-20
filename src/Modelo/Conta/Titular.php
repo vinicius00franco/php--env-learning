@@ -1,6 +1,6 @@
 <?php
 
-namespace Alura\Banco\Modelo\Conta; 
+namespace Alura\Banco\Modelo\Conta;
 
 use Alura\Banco\Modelo\{Pessoa,Cpf,Endereco};
 
@@ -8,24 +8,19 @@ class Titular extends Pessoa
 {
     public function __construct
     (
-        protected Cpf $cpf,
-        protected $nome,
+        string $nome,
+        Cpf $cpf,
         private Endereco $endereco
-        )
+    )
     {
-        parent::__construct( $nome, $cpf);
-        $cpf = new Cpf($cpf);
+        parent::__construct($nome, $cpf);
     }
     // getters e setters 
 
 
-    public function getEndereco()
+    public function getEnderecoTitular()
     {
-        return $this->endereco->getEndereco();
+        return $this->endereco;
     }
 
-    public function getCpf()
-    {
-        return $this->cpf;
-    }
 }

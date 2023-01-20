@@ -14,7 +14,6 @@ class Funcionario extends Pessoa
     )
     {
         parent::__construct($nome,$cpf);
-        $cpf = new Cpf($cpf);
     }
 
     public function getCargo(): string
@@ -22,13 +21,4 @@ class Funcionario extends Pessoa
         return $this->cargo;
     }
 
-    public function getCpf()
-    {
-        return $this->cpf;
-    }
-
-    // public function getNome()
-    // {
-    //     return parent::getNome();
-    // }
 }

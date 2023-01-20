@@ -3,21 +3,19 @@
 namespace Alura\Banco\Modelo\Conta;
 
 use Alura\Banco\Modelo\Conta\Titular;
-use Alura\Banco\Modelo\Endereco;
 
-class Conta
+abstract class Conta
 {
+    protected $saldo = 0;
     private static $numeroDeContas = 0;
     
     public function __construct
     (
-        private $Titular,
-        private $saldo = 0,
-        private Endereco $endereco,
+        Titular $Titular,
+         $saldo = 0,
     )
     {
         self::$numeroDeContas++;
-        $Titular = new Titular($Titular->getCpf(),$Titular->getNome(),$endereco);
     }
     // ao constrir é atribuido a static $numero de contas que mais uma conta foi criada
     // porem, se for instanciado um objeto sem uma referencia, precisa ser apagado da static $numero de contas
@@ -33,9 +31,13 @@ class Conta
             exit();
         }
     }
+
+    abstract protected function porcentTarifa():float;
        
     public function saca(float $valorASacar):void
     {
+        $valorDaTarifa = $valorASacar * $this->porcentTarifa();
+        $valorASacar += $valorDaTarifa;
         if ($valorASacar > $this->saldo){
             echo "Saldo indisponível"; 
             return ;
@@ -52,14 +54,7 @@ class Conta
         $this->saldo += $valorADepositar;
     }
     
-    public function transfere(float $valorATransferir, Conta $contaDestino):void
-    {
-        if ($valorATransferir > $this->saldo){
-            echo "Saldo Indisponível";  
-            return;
-        }
-        $contaDestino->deposita($valorATransferir);
-    }
+    
     
     
     

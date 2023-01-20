@@ -22,7 +22,7 @@ class Pessoa
         }
     }
 
-    public function getNome(): string
+    public function getNome()
     {
         return $this->nome;
     }

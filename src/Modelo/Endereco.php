@@ -8,13 +8,26 @@ class Endereco
         private string $cidade,
         private string $bairro,
         private string $rua,
-        private string $numero,
+        private string $numeroCasa,
 
     )
     {}
 
-    public function getEndereco()
+    public function getCidade()
     {
-        return $this->rua . "," . $this->numero . "\n" . $this->bairro . "," . $this->cidade;
+        return $this->cidade;
+    }
+    
+    public function getBairro()
+    {
+        return $this->bairro;
+    }
+    public function getRua()
+    {
+        return $this->rua;
+    }
+    public function getNumeroCasa()
+    {
+        return $this->numeroCasa;
     }
 }
