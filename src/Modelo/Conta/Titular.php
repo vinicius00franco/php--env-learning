@@ -4,7 +4,7 @@ namespace Alura\Banco\Modelo\Conta;
 
 use Alura\Banco\Modelo\{Pessoa,Cpf,Endereco};
 
-class Titular extends Pessoa
+abstract class Titular extends Pessoa
 {
     public function __construct
     (
