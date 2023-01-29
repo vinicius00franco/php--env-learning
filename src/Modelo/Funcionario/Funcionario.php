@@ -10,7 +10,7 @@ abstract class  Funcionario extends Pessoa
     (
         string $nome,
         Cpf $cpf,
-        protected string $salario,
+        protected float $salario,
     )
     {
         parent::__construct($nome,$cpf);

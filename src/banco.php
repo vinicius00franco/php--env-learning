@@ -1,14 +1,19 @@
 <?php
 
-require_once 'autoload.php';
 
-use Alura\Banco\Modelo\{Endereco, Cpf,Funcionario, Pessoa};
-use Alura\Banco\Modelo\Conta\{Titular, Conta};
+
 // src/Modelo
 
+use Alura\Banco\Modelo\Conta\ContaCorrente;
+use Alura\Banco\Modelo\Cpf;
+use Alura\Banco\Modelo\Endereco;
+
+require 'autoload.php';
+
+
 $endereco = new Endereco('mogi das cruzes','alvora','x',123);
-$Titular = new Titular('vinicius',new Cpf('123.456.789-50'),$endereco);
-$primeira_conta = new Conta($Titular);
+$Titular = new $Titular('vinicius',new Cpf('123.456.789-50'),$endereco);
+$primeira_conta = new ContaCorrente($Titular);
 
 $primeira_conta->deposita(700);
 $primeira_conta->transfere(200,$segunda_conta);

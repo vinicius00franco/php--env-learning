@@ -2,9 +2,9 @@
 
 namespace Alura\Banco\Modelo;
 
-class Cpf
+final class Cpf
 {
-    public function __construct(private $cpfTitular)
+    public function __construct(private string $cpf)
     {
         
        $this->validandoCpf();
@@ -12,24 +12,29 @@ class Cpf
 
     private function validandoCpf(): string
     {
-        $cpf = filter_var($this->cpfTitular, FILTER_VALIDATE_REGEXP, [
+        $Cpftovalidated = filter_var($this->cpf, FILTER_VALIDATE_REGEXP, [
             'options' => [
                 'regexp' => '/^[0-9]{3}\.[0-9]{3}\.[0-9]{3}\-[0-9]{2}$/'
             ]
         ]);
 
-        if ($cpf === false) {
+        if ($Cpftovalidated === false) {
             echo "Cpf inválido";
             exit();
         }
-        return $this->cpfTitular = $cpf;
+        return $this->cpf = $Cpftovalidated;
     }
     
 
-    // getter e setters
-    public function getCpfTitular()
+    // // getter e setters
+    // public function getCpfTitular()
+    // {
+    //     return $this->cpf;
+    // }
+
+    public function __toString()
     {
-        return $this->cpfTitular;
+        return "{$this->cpf}";
     }
 
 }
